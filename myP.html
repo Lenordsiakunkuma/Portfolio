@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenord Siakunkuma | IT Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8f9fa;
+            --gray: #94a3b8;
+            --success: #4cc9f0;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--accent), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .hero-text {
+            flex: 1;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .profile-container {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .profile-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(72, 149, 239, 0.4);
+        }
+        
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.5);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--darker);
+        }
+        
+        /* Skills Section */
+        .skills {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skills::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(72,149,239,0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(72, 149, 239, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .skill-card:nth-child(1) { animation-delay: 0.1s; }
+        .skill-card:nth-child(2) { animation-delay: 0.2s; }
+        .skill-card:nth-child(3) { animation-delay: 0.3s; }
+        .skill-card:nth-child(4) { animation-delay: 0.4s; }
+        .skill-card:nth-child(5) { animation-delay: 0.5s; }
+        .skill-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: rgba(72, 149, 239, 0.4);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .skill-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .skill-list {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li:before {
+            content: '▹';
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(72, 149, 239, 0.25);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3a0ca3, #4361ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image i {
+            font-size: 5rem;
+            color: rgba(255,255,255,0.1);
+        }
+        
+        .project-content {
+            padding: 1.8rem;
+        }
+        
+        .project-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--accent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+            animation: grow 1.5s ease forwards;
+        }
+        
+        .timeline-item {
+            padding: 1.5rem 2rem;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            animation: fadeInLeft 0.8s ease forwards;
+            opacity: 0;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+            animation-name: fadeInRight;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--darker);
+            border: 3px solid var(--accent);
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            background: rgba(15, 23, 42, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(72, 149, 239, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .timeline-title {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-date {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .timeline-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .timeline-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        /* Contact Section */
+        .contact {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76,201,240,0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(72, 149, 239, 0.2);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(72, 149, 239, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--light);
+            transition: var(--transition);
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-center {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            animation: zoomIn 0.4s ease;
+        }
+        
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(72, 149, 239, 0.1);
+            color: var(--accent);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--darker);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes grow {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left !important;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Lenord.S</div>
+                <div class="nav-links">
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Lenord Siakunkuma</h1>
+                    <h2>IT Specialist & Network Engineer</h2>
+                    <p>Detail-oriented IT professional with expertise in network administration, server management, and web development. Seeking opportunities to leverage my diverse technical skills in challenging roles.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn">Hire Me</a>
+                        <a href="#projects" class="btn btn-outline">View Projects</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container" id="profileContainer">
+                        <img src="rey2ooc.jpg" alt="Lenord Siakunkuma" class="profile-pic">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="skill-title">Networking</h3>
+                    <ul class="skill-list">
+                        <li>Network Device Configuration</li>
+                        <li>Router & Switch Management</li>
+                        <li>Network Security Implementation</li>
+                        <li>VPN & Firewall Setup</li>
+                        <li>TCP/IP Protocols</li>
+                        <li>Wireless Network Solutions</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="skill-title">Server Management</h3>
+                    <ul class="skill-list">
+                        <li>Windows & Linux Server Admin</li>
+                        <li>Active Directory Management</li>
+                        <li>Virtualization (VMware, Hyper-V)</li>
+                        <li>Backup & Disaster Recovery</li>
+                        <li>Cloud Services (AWS, Azure)</li>
+                        <li>Performance Monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title">Web Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript & Node.js</li>
+                        <li>PHP & MySQL</li>
+                        <li>Responsive Design</li>
+                        <li>API Integration</li>
+                        <li>Frontend Frameworks</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="skill-title">Data Management</h3>
+                    <ul class="skill-list">
+                        <li>Data Entry (45+ WPM)</li>
+                        <li>Database Administration</li>
+                        <li>Excel & Google Sheets</li>
+                        <li>Record Keeping Systems</li>
+                        <li>Data Analysis</li>
+                        <li>Report Generation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="skill-title">Electrical Systems</h3>
+                    <ul class="skill-list">
+                        <li>Power Electrical Installation</li>
+                        <li>Wiring & Circuit Design</li>
+                        <li>Equipment Maintenance</li>
+                        <li>Safety Compliance</li>
+                        <li>Troubleshooting</li>
+                        <li>Mechanical Systems</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="skill-title">Logistics</h3>
+                    <ul class="skill-list">
+                        <li>Heavy Goods Vehicle License</li>
+                        <li>Transportation Management</li>
+                        <li>Inventory Control</li>
+                        <li>Route Planning</li>
+                        <li>Safety Protocols</li>
+                        <li>Compliance Documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Enterprise Network Setup</h3>
+                        <p>
+                            Designed and implemented a secure network infrastructure for a mid-sized 
+                            company with 50+ devices. Configured routers, switches, firewalls,
+                             and wireless access points.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="btn">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">ITC Portal</h3>
+                        <p>
+                            A custom web portal for Industrail Training Center Academic Management.
+                             Built with HTML,PHP, JavaScript, and MySQL. 
+                            Features Online Library System, Student Portal, 
+                            and Application Forms. 
+                        </p>
+                        <div class="project-links">
+                            <a href="https://itcportal.ct.ws" class="btn" target="_blank">Visit Live</a>
+                            <a href="#" class="btn btn-outline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Server Migration Project</h3>
+                        <p>Migrated physical servers to a virtualized environment with zero downtime. Implemented backup solutions and disaster recovery protocols for business continuity.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">General Worker - IT & Maintenance</h3>
+                        <h4 class="timeline-date">Simbi Craft Limited | 2021 - 2024</h4>
+                        <ul class="timeline-list">
+                            <li>Managed network infrastructure and IT systems</li>
+                            <li>Maintained servers and implemented security protocols</li>
+                            <li>Performed data entry and maintained digital records</li>
+                            <li>Troubleshooted hardware and software issues</li>
+                            <li>Maintained electrical and mechanical systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Network Support Intern</h3>
+                        <h4 class="timeline-date">Zambia Communications Authority | 2020</h4>
+                        <ul class="timeline-list">
+                            <li>Assisted in network configuration and maintenance</li>
+                            <li>Monitored network performance and security</li>
+                            <li>Provided technical support to end-users</li>
+                            <li>Documented network configurations and procedures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="What is this regarding?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your message here..." required></textarea>
+                    </div>
+                    
+                    <div class="btn-center">
+                        <button type="submit" class="btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <span class="close" id="closeModal">&times;</span>
+        <img src="rey2ooc.jpg" alt="Lenord Siakunkuma" class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="copyright">© 2024 Lenord Siakunkuma. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Profile Image Modal
+        const profileContainer = document.getElementById('profileContainer');
+        const modal = document.getElementById('profileModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        
+        profileContainer.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will respond as soon as possible.');
+            this.reset();
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.skill-card, .project-card, .timeline-item');
+            
+            elements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0)";
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Initialize on page load
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>s
