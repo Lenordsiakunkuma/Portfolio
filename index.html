@@ -934,40 +934,85 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
+     <div class="container">
+        <section id="contact" class="contact-section">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-box">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Location</h3>
+                            <p>San Francisco, CA, USA</p>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
+                    <div class="info-box">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <a href="mailto:contact@yourportfolio.com">contact@yourportfolio.com</a>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" placeholder="What is this regarding?" required>
+                    <div class="info-box">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" placeholder="Your message here..." required></textarea>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this regarding?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+                        </div>
+                        
+                        <div class="btn-center">
+                            <button type="submit" class="btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
                     
-                    <div class="btn-center">
-                        <button type="submit" class="btn">Send Message</button>
-                    </div>
-                </form>
+                    <div id="statusMessage" class="status-message"></div>
+                </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </div>
+    
     <!-- Profile Modal -->
     <div class="modal" id="profileModal">
         <span class="close" id="closeModal">&times;</span>
@@ -988,11 +1033,79 @@
     </footer>
 
 
+    <!-- Include EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("reynard siakunkuma"); // Replace with your User ID
-</script>
+      
+    <script>
+        // Initialize EmailJS with your User ID
+        emailjs.init("PToJWdmrqbxWIDo8k");
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form elements
+            const form = this;
+            const statusMessage = document.getElementById('statusMessage');
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Show loading state
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitButton.disabled = true;
+            statusMessage.style.display = 'none';
+            
+            // Add current time to form data
+            const now = new Date();
+            const timeString = now.toLocaleString('en-US', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            });
+            
+            // Create hidden input for time
+            const timeInput = document.createElement('input');
+            timeInput.type = 'hidden';
+            timeInput.name = 'time';
+            timeInput.value = timeString;
+            form.appendChild(timeInput);
+            
+            // Send email using EmailJS
+            emailjs.sendForm('service_537h3fx', 'template_pt49ien', form)
+                .then(() => {
+                    // Success message
+                    statusMessage.className = 'status-message success';
+                    statusMessage.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.';
+                    statusMessage.style.display = 'block';
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Remove the temporary time input
+                    form.removeChild(timeInput);
+                }, (error) => {
+                    // Error message
+                    statusMessage.className = 'status-message error';
+                    statusMessage.innerHTML = `<i class="fas fa-exclamation-circle"></i> Failed to send message. Please try again. (${error.text || 'Unknown error'})`;
+                    statusMessage.style.display = 'block';
+                    
+                    // Remove the temporary time input
+                    form.removeChild(timeInput);
+                })
+                .finally(() => {
+                    // Reset button
+                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                    submitButton.disabled = false;
+                    
+                    // Scroll to status message
+                    statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+        });
+    </script>
 
+    
     <script>
         // Profile Image Modal
         const profileContainer = document.getElementById('profileContainer');
@@ -1017,19 +1130,6 @@
             }
         });
         
-        // Form Submission
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-              e.preventDefault();
-              
-              // Send email using EmailJS
-              emailjs.sendForm('zOInvZDJoU4DnU713', '_ejs-test-mail-service_', this)
-                .then(() => {
-                  alert('Thank you! Your message was sent successfully.');
-                  this.reset(); // Reset form
-                }, (error) => {
-                  alert('Oops! Message failed to send: ' + JSON.stringify(error));
-                });
-            });
         
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1068,6 +1168,7 @@
 </body>
 
 </html>
+
 
 
 
