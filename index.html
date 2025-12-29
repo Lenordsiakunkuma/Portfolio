@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #0066FF;
@@ -35,11 +34,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            max-width: 100%; /* Prevent horizontal overflow */
         }
         
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 100px;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
         body {
@@ -47,8 +48,10 @@
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             color: var(--light);
             line-height: 1.7;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
             background-attachment: fixed;
+            width: 100%;
+            position: relative;
         }
         
         h1, h2, h3, h4, h5 {
@@ -56,28 +59,30 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
+            word-wrap: break-word;
         }
         
         p {
             margin-bottom: 1.5rem;
             color: var(--gray);
             font-size: 1.1rem;
+            word-wrap: break-word;
         }
         
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 clamp(15px, 5vw, 30px); /* Responsive padding */
         }
         
         section {
-            padding: 8rem 0;
+            padding: clamp(4rem, 8vw, 8rem) 0; /* Responsive padding */
             position: relative;
             scroll-margin-top: 100px;
         }
         
-        /* Custom Cursor */
+        /* Custom Cursor - Hide on mobile */
         .cursor {
             position: fixed;
             width: 20px;
@@ -114,6 +119,7 @@
             z-index: 1000;
             transition: var(--transition-smooth);
             border-bottom: 1px solid var(--glass-border);
+            padding: 0;
         }
         
         header.scrolled {
@@ -126,11 +132,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 0;
+            position: relative;
+            width: 100%;
         }
         
         .logo {
             font-weight: 800;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -156,7 +164,7 @@
         
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: clamp(1rem, 3vw, 3rem);
         }
         
         .nav-links a {
@@ -166,7 +174,7 @@
             position: relative;
             padding: 0.5rem 0;
             transition: var(--transition-smooth);
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             letter-spacing: 0.5px;
         }
         
@@ -253,16 +261,16 @@
         }
         
         .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
+            width: min(300px, 40vw);
+            height: min(300px, 40vw);
             top: 10%;
             left: 5%;
             animation-delay: 0s;
         }
         
         .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
+            width: min(200px, 30vw);
+            height: min(200px, 30vw);
             top: 60%;
             right: 10%;
             animation-delay: 5s;
@@ -270,8 +278,8 @@
         }
         
         .shape:nth-child(3) {
-            width: 150px;
-            height: 150px;
+            width: min(150px, 25vw);
+            height: min(150px, 25vw);
             bottom: 20%;
             left: 20%;
             animation-delay: 10s;
@@ -281,24 +289,28 @@
         .hero-content {
             display: flex;
             align-items: center;
-            gap: 5rem;
+            gap: clamp(2rem, 5vw, 5rem);
+            flex-wrap: wrap;
+            width: 100%;
         }
         
         .hero-text {
-            flex: 1;
+            flex: 1 1 500px;
             z-index: 2;
+            max-width: 100%;
         }
         
         .hero-image {
-            flex: 1;
+            flex: 1 1 400px;
             display: flex;
             justify-content: center;
             position: relative;
             z-index: 2;
+            max-width: 100%;
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 7vw, 4rem);
             background: linear-gradient(135deg, var(--light) 0%, var(--primary) 50%, var(--secondary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -308,15 +320,15 @@
         }
         
         .hero h2 {
-            font-size: 2.2rem;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
             color: var(--secondary);
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 100%;
             margin-bottom: 3rem;
             color: var(--light-gray);
         }
@@ -328,8 +340,8 @@
         }
         
         .profile-container {
-            width: 400px;
-            height: 400px;
+            width: clamp(260px, 40vw, 400px);
+            height: clamp(260px, 40vw, 400px);
             border-radius: 50%;
             overflow: hidden;
             border: 3px solid transparent;
@@ -339,6 +351,7 @@
             transition: var(--transition-smooth);
             position: relative;
             animation: float 6s infinite ease-in-out;
+            max-width: 100%;
         }
         
         .profile-container::before {
@@ -376,7 +389,7 @@
             gap: 0.7rem;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--dark);
-            padding: 1.1rem 2.5rem;
+            padding: clamp(0.9rem, 2vw, 1.1rem) clamp(1.8rem, 3vw, 2.5rem);
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
@@ -384,11 +397,13 @@
             border: none;
             cursor: pointer;
             box-shadow: var(--shadow-medium);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             position: relative;
             overflow: hidden;
             z-index: 1;
             letter-spacing: 0.5px;
+            width: auto;
+            min-width: 140px;
         }
         
         .btn::before {
@@ -445,13 +460,14 @@
         
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: clamp(3rem, 5vw, 5rem);
         }
         
         .section-title {
-            font-size: 3rem;
+            font-size: clamp(2.2rem, 5vw, 3rem);
             position: relative;
             display: inline-block;
+            padding: 0 20px;
         }
         
         .section-title::after {
@@ -468,21 +484,23 @@
         
         .section-subtitle {
             color: var(--gray);
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            max-width: 100%;
             margin: 2rem auto 0;
+            padding: 0 clamp(15px, 5vw, 30px);
         }
         
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            width: 100%;
         }
         
         .skill-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            padding: 2.5rem;
+            padding: clamp(1.8rem, 3vw, 2.5rem);
             border-radius: var(--border-radius);
             backdrop-filter: blur(20px);
             transition: var(--transition-bounce);
@@ -494,6 +512,7 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
         
         .skill-card::before {
@@ -522,21 +541,23 @@
         .skill-header {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: clamp(1rem, 2vw, 1.5rem);
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .skill-icon {
-            width: 70px;
-            height: 70px;
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
             background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 212, 255, 0.1));
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             transition: var(--transition-smooth);
+            flex-shrink: 0;
         }
         
         .skill-card:hover .skill-icon {
@@ -545,7 +566,7 @@
         }
         
         .skill-title {
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
             color: var(--light);
             flex-grow: 1;
         }
@@ -553,6 +574,7 @@
         .skill-list {
             list-style: none;
             flex-grow: 1;
+            padding: 0;
         }
         
         .skill-list li {
@@ -562,6 +584,7 @@
             align-items: center;
             transition: var(--transition-fast);
             color: var(--light-gray);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .skill-list li:hover {
@@ -603,8 +626,9 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+            gap: clamp(2rem, 4vw, 3rem);
+            width: 100%;
         }
         
         .project-card {
@@ -620,6 +644,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            width: 100%;
         }
         
         .project-card:hover {
@@ -629,7 +654,7 @@
         }
         
         .project-image {
-            height: 250px;
+            height: clamp(180px, 25vw, 250px);
             background: linear-gradient(45deg, #0a0e17, #001233);
             display: flex;
             align-items: center;
@@ -655,7 +680,7 @@
         }
         
         .project-image i {
-            font-size: 6rem;
+            font-size: clamp(4rem, 8vw, 6rem);
             color: rgba(255, 255, 255, 0.1);
             transition: var(--transition-smooth);
             z-index: 1;
@@ -667,14 +692,14 @@
         }
         
         .project-content {
-            padding: 2.5rem;
+            padding: clamp(1.8rem, 3vw, 2.5rem);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
         
         .project-title {
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
             color: var(--light);
         }
@@ -683,6 +708,7 @@
             color: var(--light-gray);
             flex-grow: 1;
             margin-bottom: 2rem;
+            font-size: clamp(0.95rem, 2vw, 1rem);
         }
         
         .project-tech {
@@ -697,7 +723,7 @@
             color: var(--secondary);
             padding: 0.5rem 1.2rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: clamp(0.8rem, 2vw, 0.85rem);
             font-weight: 600;
             border: 1px solid rgba(0, 102, 255, 0.2);
             transition: var(--transition-fast);
@@ -711,6 +737,7 @@
         .project-links {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
         
         /* Experience Section */
@@ -750,7 +777,7 @@
         }
         
         .timeline-item {
-            padding: 2rem 3rem;
+            padding: clamp(1.5rem, 3vw, 2rem) clamp(2rem, 4vw, 3rem);
             position: relative;
             width: 50%;
             box-sizing: border-box;
@@ -760,13 +787,13 @@
         
         .timeline-item:nth-child(odd) {
             left: 0;
-            padding-right: 4rem;
+            padding-right: clamp(3rem, 5vw, 4rem);
             text-align: right;
         }
         
         .timeline-item:nth-child(even) {
             left: 50%;
-            padding-left: 4rem;
+            padding-left: clamp(3rem, 5vw, 4rem);
             animation-name: fadeInRight;
         }
         
@@ -801,7 +828,7 @@
         .timeline-content {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            padding: 2.5rem;
+            padding: clamp(1.8rem, 3vw, 2.5rem);
             border-radius: var(--border-radius);
             backdrop-filter: blur(20px);
             box-shadow: var(--shadow-light);
@@ -835,13 +862,14 @@
         .timeline-title {
             color: var(--light);
             margin-bottom: 0.5rem;
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
         }
         
         .timeline-subtitle {
             color: var(--secondary);
             font-weight: 600;
             margin-bottom: 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
         }
         
         .timeline-date {
@@ -853,6 +881,7 @@
             border-radius: 50px;
             display: inline-block;
             border: 1px solid rgba(0, 102, 255, 0.2);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .timeline-list {
@@ -865,6 +894,7 @@
             position: relative;
             padding-left: 1.8rem;
             color: var(--light-gray);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .timeline-list li::before {
@@ -901,13 +931,13 @@
         
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            grid-template-columns: 1fr;
+            gap: clamp(3rem, 5vw, 5rem);
             align-items: start;
         }
         
         .contact-info {
-            padding-right: 2rem;
+            padding-right: 0;
         }
         
         .contact-form-container {
@@ -929,6 +959,7 @@
             border-radius: var(--border-radius);
             backdrop-filter: blur(20px);
             transition: var(--transition-bounce);
+            flex-wrap: wrap;
         }
         
         .contact-item:hover {
@@ -938,16 +969,17 @@
         }
         
         .contact-icon {
-            width: 60px;
-            height: 60px;
+            width: clamp(50px, 8vw, 60px);
+            height: clamp(50px, 8vw, 60px);
             background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 212, 255, 0.1));
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             transition: var(--transition-smooth);
+            flex-shrink: 0;
         }
         
         .contact-item:hover .contact-icon {
@@ -957,7 +989,7 @@
         
         .contact-form {
             background: var(--glass-bg);
-            padding: 3rem;
+            padding: clamp(2rem, 4vw, 3rem);
             border-radius: var(--border-radius);
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(20px);
@@ -993,6 +1025,7 @@
             color: var(--light);
             transition: var(--transition-smooth);
             font-family: 'Inter', sans-serif;
+            max-width: 100%;
         }
         
         input:focus, textarea:focus, select:focus {
@@ -1005,6 +1038,7 @@
         textarea {
             height: 180px;
             resize: vertical;
+            max-width: 100%;
         }
         
         select {
@@ -1072,6 +1106,7 @@
             box-shadow: var(--shadow-heavy);
             animation: zoomIn 0.4s ease;
             border: 3px solid var(--primary);
+            object-fit: contain;
         }
         
         .close {
@@ -1101,7 +1136,7 @@
         /* Footer */
         footer {
             background: rgba(5, 9, 19, 0.98);
-            padding: 5rem 0 3rem;
+            padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
             text-align: center;
             border-top: 1px solid var(--glass-border);
             position: relative;
@@ -1124,12 +1159,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2.5rem;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
         }
         
         .footer-logo {
             font-weight: 800;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -1140,21 +1175,22 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: clamp(1rem, 2vw, 2rem);
             margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: clamp(50px, 8vw, 60px);
+            height: clamp(50px, 8vw, 60px);
             border-radius: 50%;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--light);
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             transition: var(--transition-bounce);
             position: relative;
             overflow: hidden;
@@ -1187,8 +1223,9 @@
         
         .copyright {
             color: var(--gray);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             margin-top: 2rem;
+            padding: 0 20px;
         }
         
         /* Animations */
@@ -1266,19 +1303,14 @@
             100% { box-shadow: 0 0 10px rgba(0, 102, 255, 0.5); }
         }
         
-        /* Responsive Design */
+        /* Enhanced Responsive Design */
         @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .profile-container {
-                width: 350px;
-                height: 350px;
-            }
-            
             .contact-container {
-                gap: 3rem;
+                grid-template-columns: 1fr;
+            }
+            
+            .logo::after {
+                display: none;
             }
         }
         
@@ -1323,7 +1355,7 @@
                 right: -100%;
                 flex-direction: column;
                 background: rgba(5, 9, 19, 0.98);
-                width: 320px;
+                width: min(320px, 90%);
                 height: 100vh;
                 padding: 120px 40px 40px;
                 transition: var(--transition-smooth);
@@ -1331,6 +1363,7 @@
                 box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
                 z-index: 999;
                 border-left: 1px solid var(--glass-border);
+                overflow-y: auto;
             }
             
             .nav-links.active {
@@ -1338,7 +1371,6 @@
             }
             
             .contact-container {
-                grid-template-columns: 1fr;
                 gap: 4rem;
             }
             
@@ -1349,28 +1381,38 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .cursor, .cursor-follower {
+                display: none !important;
+            }
         }
         
         @media (max-width: 768px) {
             section {
-                padding: 6rem 0;
+                padding: 4rem 0;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding-top: 80px;
+                padding-bottom: 4rem;
             }
             
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
             
             .hero h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .profile-container {
-                width: 300px;
-                height: 300px;
+                width: min(300px, 80vw);
+                height: min(300px, 80vw);
             }
             
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .skills-grid, .projects-grid {
@@ -1378,22 +1420,23 @@
             }
             
             .skill-card, .project-card, .contact-form {
-                padding: 2rem;
+                padding: 1.8rem;
             }
             
             .modal-content {
                 max-width: 95%;
             }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            
+            .close {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 2rem;
             }
             
             .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
             }
             
             .btn {
@@ -1401,14 +1444,44 @@
                 max-width: 300px;
                 justify-content: center;
             }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 100%;
+            }
             
             .profile-container {
-                width: 260px;
-                height: 260px;
+                width: min(260px, 90vw);
+                height: min(260px, 90vw);
             }
             
             .section-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+                line-height: 1.6;
             }
             
             .project-links {
@@ -1419,6 +1492,96 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.3rem;
+            }
+            
+            .contact-item {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+            
+            .timeline-item::after {
+                width: 20px;
+                height: 20px;
+                top: 30px;
+            }
+            
+            .timeline::after {
+                left: 26px;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 16px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .profile-container {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .skill-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+            }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .skill-card:hover,
+            .project-card:hover,
+            .timeline-content:hover,
+            .contact-item:hover,
+            .btn:hover,
+            .social-links a:hover {
+                transform: none !important;
+            }
+            
+            .skill-card:hover .skill-icon,
+            .contact-item:hover .contact-icon {
+                transform: none !important;
+            }
+            
+            .btn:active {
+                transform: scale(0.98) !important;
+            }
+            
+            /* Larger touch targets */
+            .nav-links a,
+            .btn,
+            .social-links a {
+                padding: 15px;
             }
         }
     </style>
@@ -1440,7 +1603,7 @@
                     <a href="#experience">Experience</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <button class="mobile-menu-btn">
+                <button class="mobile-menu-btn" aria-label="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -1718,7 +1881,7 @@
                             </div>
                             <div>
                                 <h4>Location</h4>
-                                <p>Thornpark Chilebe cross road, Lusaka | Available  for  Work</p>
+                                <p>Thornpark Chilebe cross road, Lusaka | Available for Work</p>
                             </div>
                         </div>
                     </div>
@@ -1779,16 +1942,16 @@
                 <p>IT Architect | Network Engineer | Full-Stack Developer</p>
                 
                 <div class="social-links">
-                    <a href="#" title="LinkedIn">
+                    <a href="#" title="LinkedIn" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" title="GitHub">
+                    <a href="#" title="GitHub" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" title="Twitter">
+                    <a href="#" title="Twitter" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" title="Email">
+                    <a href="#" title="Email" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -1800,36 +1963,44 @@
 
     <!-- JavaScript -->
     <script>
-        // Custom Cursor
+        // Check for mobile/touch devices
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Custom Cursor - Only for desktop
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
-        
-        // Interactive cursor effects
-        document.querySelectorAll('a, button, .profile-container').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = 'var(--secondary)';
-                cursorFollower.style.transform = 'translate(-50%, -50%) scale(2)';
-                cursorFollower.style.background = 'var(--secondary)';
+        if (!isMobile) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
             });
             
-            element.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = 'var(--primary)';
-                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorFollower.style.background = 'var(--secondary)';
+            // Interactive cursor effects
+            document.querySelectorAll('a, button, .profile-container').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursor.style.borderColor = 'var(--secondary)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(2)';
+                    cursorFollower.style.background = 'var(--secondary)';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.borderColor = 'var(--primary)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorFollower.style.background = 'var(--secondary)';
+                });
             });
-        });
+        } else {
+            cursor.style.display = 'none';
+            cursorFollower.style.display = 'none';
+        }
         
         // DOM Elements
         const header = document.querySelector('header');
@@ -1843,41 +2014,61 @@
         const contactForm = document.getElementById('contactForm');
         const statusMessage = document.getElementById('statusMessage');
         
-        // Parallax effect for floating shapes
-        document.addEventListener('mousemove', (e) => {
-            const shapes = document.querySelectorAll('.shape');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = (mouseX * speed * 100) - 50;
-                const y = (mouseY * speed * 100) - 50;
+        // Parallax effect for floating shapes - Only on desktop
+        if (!isMobile && window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                const shapes = document.querySelectorAll('.shape');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
                 
-                shape.style.transform = `translate(${x}px, ${y}px)`;
+                shapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX * speed * 100) - 50;
+                    const y = (mouseY * speed * 100) - 50;
+                    
+                    shape.style.transform = `translate(${x}px, ${y}px)`;
+                });
             });
-        });
+        }
         
         // Header scroll effect
+        let scrollTimeout;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(() => {
+                    scrollTimeout = null;
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                    
+                    updateActiveNavLink();
+                }, 100);
             }
-            
-            updateActiveNavLink();
         });
         
-        // Mobile menu toggle
-        mobileMenuBtn.addEventListener('click', () => {
+        // Mobile menu toggle with improved touch handling
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             mobileMenu.classList.toggle('active');
             mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
                 
-            // Toggle body scroll
+            // Toggle body scroll and prevent background scroll on mobile
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+            }
         });
         
         // Close mobile menu when clicking a link
@@ -1907,7 +2098,7 @@
             }
         });
         
-        // Smooth scrolling for anchor links
+        // Improved smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1917,8 +2108,18 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        document.body.style.overflow = '';
+                    }
+                    
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
@@ -1928,6 +2129,7 @@
         // Update active nav link based on scroll position
         function updateActiveNavLink() {
             const scrollPosition = window.scrollY + 150;
+            let currentSection = '';
             
             document.querySelectorAll('section').forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -1935,29 +2137,42 @@
                 const sectionId = section.getAttribute('id');
                 
                 if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                    currentSection = sectionId;
                 }
             });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Default to home if at top
+            if (scrollPosition < 100) {
+                navLinks[0].classList.add('active');
+            }
         }
         
-        // Animation on scroll
+        // Animation on scroll with throttling
+        let animationTimeout;
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.skill-card, .project-card, .timeline-item');
-            
-            elements.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    el.style.opacity = "1";
-                    el.style.transform = "translateY(0)";
-                }
-            });
+            if (!animationTimeout) {
+                animationTimeout = setTimeout(() => {
+                    animationTimeout = null;
+                    const elements = document.querySelectorAll('.skill-card, .project-card, .timeline-item');
+                    
+                    elements.forEach(el => {
+                        const elementTop = el.getBoundingClientRect().top;
+                        const elementVisible = 150;
+                        
+                        if (elementTop < window.innerHeight - elementVisible) {
+                            el.style.opacity = "1";
+                            el.style.transform = "translateY(0)";
+                        }
+                    });
+                }, 100);
+            }
         };
         
         window.addEventListener('scroll', animateOnScroll);
@@ -1969,6 +2184,10 @@
             // Add a slight delay to ensure everything is loaded
             setTimeout(() => {
                 document.body.style.opacity = '1';
+                document.body.style.transition = 'opacity 0.5s ease';
+                
+                // Force a reflow to trigger animations
+                document.body.getBoundingClientRect();
             }, 300);
         });
         
@@ -1995,84 +2214,67 @@
                 statusMessage.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. I\'ll respond within 24 hours.';
                 statusMessage.style.display = 'block';
                 
-                // Add success animation to button
-                submitButton.style.background = 'linear-gradient(135deg, var(--success), var(--secondary))';
-                
                 // Reset form
                 setTimeout(() => {
                     contactForm.reset();
                     submitButton.innerHTML = originalButtonText;
                     submitButton.disabled = false;
-                    submitButton.style.background = '';
+                    
+                    // Scroll to status message on mobile
+                    if (isMobile || window.innerWidth < 768) {
+                        statusMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
                 }, 2000);
-                
-                // Scroll to status message
-                statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 2000);
         });
         
-        // Interactive hover effects for cards
-        document.querySelectorAll('.skill-card, .project-card, .timeline-content, .contact-item').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.zIndex = '10';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.zIndex = '';
-            });
+        // Handle viewport resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Close mobile menu on landscape/portrait switch
+                if (mobileMenu.classList.contains('active') && window.innerWidth > 992) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    document.body.style.overflow = '';
+                }
+            }, 250);
         });
         
-        // Add typing effect to hero text
-        const heroTitle = document.querySelector('.hero h1');
-        const originalText = heroTitle.textContent;
+        // Prevent horizontal scrolling
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                const element = document.elementFromPoint(touch.clientX, touch.clientY);
+                
+                // Allow horizontal scrolling only for specific elements
+                const allowHorizontalScroll = element && (
+                    element.classList.contains('modal-content') ||
+                    element.tagName === 'IMG'
+                );
+                
+                if (!allowHorizontalScroll && Math.abs(e.touches[0].pageX - touch.pageX) > 10) {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
         
-        // Page load animation
+        // Improve performance on mobile
+        if (isMobile) {
+            // Reduce animations on mobile
+            document.querySelectorAll('.skill-card, .project-card, .timeline-content, .contact-item').forEach(card => {
+                card.style.transition = 'all 0.3s ease';
+            });
+            
+            // Disable hover effects on touch devices
+            document.body.classList.add('touch-device');
+        }
+        
+        // Initialize page
         document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.8s ease';
-        
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-        
-        // Add particles background effect
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.position = 'absolute';
-            particle.style.width = Math.random() * 4 + 2 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.background = 'rgba(0, 212, 255, 0.3)';
-            particle.style.borderRadius = '50%';
-            particle.style.top = Math.random() * 100 + 'vh';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.zIndex = '-1';
-            
-            document.querySelector('.hero-bg').appendChild(particle);
-            
-            // Animate particle
-            const duration = Math.random() * 10 + 10;
-            const keyframes = [
-                { transform: 'translateY(0px)', opacity: 0 },
-                { transform: 'translateY(-100px)', opacity: 0.8 },
-                { transform: 'translateY(-200px)', opacity: 0 }
-            ];
-            
-            particle.animate(keyframes, {
-                duration: duration * 1000,
-                easing: 'linear',
-                iterations: Infinity
-            });
-        }
-        
-        // Create particles
-        for (let i = 0; i < 30; i++) {
-            createParticle();
-        }
+        window.dispatchEvent(new Event('scroll'));
+        updateActiveNavLink();
     </script>
 </body>
 </html>
-
-
-
